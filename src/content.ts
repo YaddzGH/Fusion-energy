@@ -80,7 +80,7 @@ export const systems = [
 ]
 
 export const hero = {
-  eyebrow: 'Produksi film pendek pelajar',
+  eyebrow: '',
   title: ['Satu arah,', 'banyak cerita.'],
   body: 'SatuArah Entertainment adalah wadah kru produksi film pelajar, dari naskah sampai tayang. Satu halaman ini menghubungkan semua sistem internal kami: absensi produksi, berita, galeri karya, dan data keanggotaan.',
   primary: { label: 'Kenali Kami', href: '#tentang' },
