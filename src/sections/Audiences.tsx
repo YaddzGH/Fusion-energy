@@ -1,26 +1,35 @@
-import { TextLink } from '../components/Button'
 import { Container } from '../components/Container'
 import { Reveal } from '../components/Reveal'
 import { SectionHeading } from '../components/Typography'
-import { audiences, cta, photos } from '../content'
+import { divisions } from '../content'
 
-/** "Who we're building for": the two launch markets, each with its vessel. */
+/** "Tujuh divisi produksi": the crew's departments as a numbered film credit list. */
 export function Audiences() {
   return (
-    <section aria-labelledby="audiences-title" className="pb-10 pt-24 sm:pb-12 sm:pt-32">
+    <section id="divisi" aria-labelledby="divisi-title" className="pb-12 pt-24 sm:pb-16 sm:pt-32">
       <Container>
         <Reveal>
-          <SectionHeading id="audiences-title" title="Who we’re building for" size="md" />
+          <SectionHeading
+            id="divisi-title"
+            eyebrow="Divisi produksi"
+            title={['Tujuh divisi produksi.', 'Satu redaksi.']}
+            body="Setiap produksi dikerjakan penuh oleh pelajar, lintas divisi, dengan peran dan tanggung jawab yang jelas."
+            align="left"
+            size="md"
+          />
         </Reveal>
-        <ul className="mx-auto mt-14 grid max-w-[820px] gap-14 sm:grid-cols-2 sm:gap-10">
-          {audiences.map((a, i) => (
-            <Reveal as="li" key={a.id} delay={i * 0.1} className="flex flex-col items-center text-center">
-                <img src={a.id === 'defense' ? photos.shipFrigate : photos.shipCargo} alt="" loading="lazy" decoding="async" width={1100} height={384} className="h-[84px] w-auto" />
-                <h3 className="mt-5 text-[17px] font-medium">{a.title}</h3>
-                <p className="mt-2 max-w-[300px] text-pretty text-[15px] leading-[1.5] text-muted">{a.body}</p>
-                <TextLink href={a.href} className="mt-3 text-[14px]">
-                  {cta.label}
-                </TextLink>
+        <ul className="mt-12 grid border-t border-white/10 sm:grid-cols-2 sm:gap-x-14">
+          {divisions.map((d, i) => (
+            <Reveal as="li" key={d.name} delay={(i % 2) * 0.05} className="group border-b border-white/10">
+              <div className="flex items-baseline gap-5 py-5">
+                <span className="w-7 shrink-0 text-[13px] tabular-nums text-faint transition-colors group-hover:text-fire-3">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                <div>
+                  <h3 className="text-[17px] font-medium">{d.name}</h3>
+                  <p className="mt-1 text-pretty text-[14.5px] leading-snug text-muted">{d.body}</p>
+                </div>
+              </div>
             </Reveal>
           ))}
         </ul>

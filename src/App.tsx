@@ -63,7 +63,7 @@ export function App() {
   const title = hit ? hit.title : 'Page not found'
 
   useEffect(() => {
-    document.title = title === brand.name ? `${brand.name}: maritime fusion power` : `${title} | ${brand.name}`
+    document.title = title === brand.name ? `${brand.name}: produksi film pelajar` : `${title} | ${brand.name}`
   }, [title])
 
   // On navigation: jump to the hash target (after the page renders) or the

@@ -14,10 +14,10 @@ const styles: Record<Mark['style'], string> = {
   serif: 'font-serif text-[15px] tracking-[-0.01em]',
 }
 
-export function Pedigree({ marks, className }: { marks: Mark[]; className?: string }) {
+export function Pedigree({ marks, className, label = 'Where our team has worked and studied' }: { marks: Mark[]; className?: string; label?: string }) {
   return (
     <ul
-      aria-label="Where our team has worked and studied"
+      aria-label={label}
       className={cx('flex items-center justify-between gap-2 overflow-hidden rounded-[18px] bg-black/90 px-4 py-3.5 text-white/90 ring-1 ring-white/10', className)}
     >
       {marks.map((m) => (

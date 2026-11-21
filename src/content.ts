@@ -4,12 +4,14 @@
 */
 
 export const brand = {
-  name: 'Tidewell Fusion',
-  short: 'Tidewell',
-  tagline: 'Fusion power for ships that never refuel.',
-  email: 'hello@tidewell.example',
-  pressEmail: 'press@tidewell.example',
-  address: ['Pier 70, Building 12', 'San Francisco, CA 94107'],
+  name: 'SatuArah Entertainment',
+  short: 'SatuArah',
+  tagline: 'Produksi film pelajar, dari naskah sampai tayang.',
+  email: 'satuarent@gmail.com',
+  pressEmail: 'satuarent@gmail.com',
+  phone: '+62 858-5921-0894',
+  site: 'https://satuarah-entertainment.site.je',
+  address: ['Wadah kru produksi film pelajar', 'Indonesia'],
 }
 
 /*
@@ -19,8 +21,10 @@ export const brand = {
   transparent background. Diagrams, icons and the reactor explorer stay SVG.
 */
 export const photos = {
+  /** Home hero: one production still, shot behind the camera. */
+  set: '/images/set.jpg',
   /** Shown through the thermal filter (ThermalImage), so any portrait works. */
-  crew: '/images/crew.webp',
+  crew: '/images/crew-satuarah.jpg',
   /** Cut-out render of the reactor module: home hero and the prototype card. */
   reactor: '/images/reactor.webp',
   /** Cut-out holographic vessels: "Who we’re building for" and the Applications hero. */
@@ -39,117 +43,139 @@ export const photos = {
 }
 export type PhotoKey = keyof typeof photos
 
+/*
+  Front-page navigation. Sections of this page are anchors; the rest is the
+  crew's existing site, so nothing here pretends to be a page we have not
+  rebuilt yet.
+*/
 export const nav = [
-  { label: 'Technology', href: '/technology' },
-  { label: 'Applications', href: '/applications' },
-  { label: 'Company', href: '/company' },
-  { label: 'Careers', href: '/careers' },
-  { label: 'News', href: '/news' },
+  { label: 'Tentang', href: '#tentang' },
+  { label: 'Divisi', href: '#divisi' },
+  { label: 'Alur', href: '#alur' },
+  { label: 'Berita', href: `${brand.site}/berita.php` },
+  { label: 'Galeri', href: `${brand.site}/galeri.php` },
 ]
 
-export const cta = { label: 'Get early access', href: '/early-access' }
+export const cta = { label: 'Masuk Sistem', href: `${brand.site}/admin.php` }
+
+export const systems = [
+  {
+    title: 'Absensi Digital',
+    body: 'Absensi sesi produksi berbasis QR, lengkap dengan dashboard admin dan riwayat kehadiran per anggota.',
+    href: 'https://script.google.com/macros/s/AKfycbznuQWUI4w2a2dTJJ-atAVqU7TJ_yiWx2O3QZEmJThS1xqBcE9JKqSHDtC9k2yiqyAVwA/exec',
+    status: 'Aktif' as const,
+  },
+  {
+    title: 'Portal Redaksi & Galeri',
+    body: 'Dashboard admin untuk menerbitkan berita, mengunggah foto galeri karya, dan moderasi komentar.',
+    href: `${brand.site}/admin.php`,
+    status: 'Aktif' as const,
+  },
+  {
+    title: 'Sistem Berikutnya',
+    body: 'Slot untuk inventaris alat, jadwal syuting, atau sistem baru lainnya.',
+    href: '#sistem',
+    status: 'Mendatang' as const,
+  },
+]
 
 export const hero = {
-  eyebrow: 'First reactor build underway',
-  title: ['Fusion power', 'for the open ocean'],
-  body: 'Tidewell is building a compact fusion reactor sized for a ship’s engine room: clean power for long voyages with no fuel stops and no emissions.',
-  primary: { label: 'Get early access', href: '/early-access' },
-  secondary: { label: 'How it works', href: '/technology' },
+  eyebrow: 'Produksi film pendek pelajar',
+  title: ['Satu arah,', 'banyak cerita.'],
+  body: 'SatuArah Entertainment adalah wadah kru produksi film pelajar, dari naskah sampai tayang. Satu halaman ini menghubungkan semua sistem internal kami: absensi produksi, berita, galeri karya, dan data keanggotaan.',
+  primary: { label: 'Kenali Kami', href: '#tentang' },
+  secondary: { label: 'Lihat Sistem', href: '#sistem' },
+  frame: {
+    top: 'REC 00:12:04',
+    meta: '24 FPS',
+    caption: 'Di balik layar',
+    note: 'Satu kru, satu lokasi, satu arah.',
+  },
   stats: [
-    { value: '0', unit: 't', label: 'Fuel bunkered per voyage' },
-    { value: '40', unit: 'MW', label: 'Net electric, per unit' },
-    { value: '20', unit: 'yr', label: 'Between core refits' },
+    { value: '7', unit: 'divisi', label: 'Produksi dalam satu kru' },
+    { value: '2', unit: 'sistem', label: 'Aktif dipakai kru' },
+    { value: '1', unit: 'kru', label: 'Satu visi bersama' },
   ],
 }
 
 export type Segment = 'shipping' | 'defense' | 'offshore'
 
-export const audiences: Array<{ id: Segment; title: string; body: string; href: string }> = [
-  {
-    id: 'shipping',
-    title: 'Commercial Shipping',
-    body: 'Record demand for large ships creates a unique opening for sustainable propulsion.',
-    href: '/early-access?segment=shipping',
-  },
-  {
-    id: 'defense',
-    title: 'Defense',
-    body: 'The defense sector needs safe, reliable energy for long missions without refueling at sea.',
-    href: '/early-access?segment=defense',
-  },
+export const divisions = [
+  { name: 'Produksi & Manajemen', body: 'Jadwal, anggaran, dan jalannya produksi dari hari pertama sampai tayang.' },
+  { name: 'Penyutradaraan & Naskah', body: 'Menerjemahkan ide menjadi cerita, adegan, dan arahan di lokasi.' },
+  { name: 'Cinemedia', body: 'Kamera, lighting, dan suara: semua gambar yang sampai ke layar.' },
+  { name: 'Editing', body: 'Menyusun ritme, warna, dan suara sampai filmnya utuh.' },
+  { name: 'Artistik & Property', body: 'Set, dekorasi, dan properti yang membangun dunia cerita.' },
+  { name: 'Wardrobe', body: 'Kostum dan tata rias yang membuat karakter terasa nyata.' },
+  { name: 'Talent', body: 'Pemain yang membawa naskah menjadi adegan.' },
+  { name: 'Redaksi', body: 'Berita, galeri, dan tulisan yang mencatat perjalanan kru.' },
 ]
 
 export const why = {
-  title: ['Why', 'Maritime Fusion?'],
+  title: ['Kenapa', 'SatuArah?'],
   cards: [
     {
       kind: 'team' as const,
-      title: 'Team with deep tech roots',
-      body: 'With deep tech backgrounds and hands-on experience, our team knows how to move fast and build hard things.',
+      title: 'Kru yang benar-benar bikin film',
+      body: 'Bukan ekstrakurikuler teori. Setiap anggota pegang peran nyata di produksi, dari menyusun jadwal sampai memegang kamera.',
     },
     {
       kind: 'prototype' as const,
-      title: 'Prototype in progress',
-      body: 'This isn’t just theory. We’re designing and building parts for our first reactor right now.',
+      title: 'Dari naskah sampai tayang',
+      body: 'Satu alur kerja yang sama untuk setiap film: ide, naskah, syuting, pasca, lalu tayang. Semua tercatat rapi lintas divisi.',
     },
     {
       kind: 'volume' as const,
-      title: 'Fits the engine room',
-      body: 'A full plant fits in the space a two-stroke diesel and its fuel tanks take today.',
-      stat: '150',
-      unit: 'm³',
+      title: 'Satu arah, satu tim',
+      body: 'Tujuh divisi produksi bekerja dalam satu jadwal, satu lokasi, dan tanggung jawab yang jelas.',
+      stat: '7',
+      unit: 'divisi',
     },
   ],
-  // Where the team has worked and studied. Placeholder institutions: replace
-  // with your own as typographic wordmarks or logo files.
+  /* Genre we work in, shown as a typographic strip on the team card. */
   pedigree: [
-    { name: 'Arclight', style: 'wide' as const },
-    { name: 'Meridian Orbital', style: 'mono' as const },
-    { name: 'Northgate University', style: 'serif-caps' as const },
-    { name: 'Halden', style: 'serif' as const },
+    { name: 'SLICE OF LIFE', style: 'wide' as const },
+    { name: 'Comedy', style: 'serif' as const },
+    { name: 'DRAMA', style: 'serif-caps' as const },
+    { name: 'Eksperimental', style: 'mono' as const },
   ],
 }
 
 export const milestones = [
-  { when: '2024', title: 'Founded', body: 'Spun out of a compact-stellarator research group with a maritime-first thesis.' },
-  { when: '2025', title: 'Magnet test stand', body: 'High-temperature superconducting coil reached full field on the bench.' },
-  { when: '2026', title: 'Prototype build', body: 'Vacuum vessel and first coil set in fabrication at Pier 70.', current: true },
-  { when: '2028', title: 'First plasma', body: 'Integrated prototype fires its first plasma at our Bay Area site.' },
-  { when: '2031', title: 'Sea trials', body: 'A demonstration unit sails aboard a partner vessel.' },
+  { when: '01', title: 'Ide & Naskah', body: 'Menemukan cerita, menulis naskah, dan membagi peran sebelum kamera dinyalakan.' },
+  { when: '02', title: 'Pra-produksi', body: 'Jadwal, lokasi, properti, wardrobe, dan uji kamera disiapkan lintas divisi.' },
+  { when: '03', title: 'Produksi', body: 'Hari syuting: semua divisi bekerja di lokasi yang sama, satu arah.', current: true },
+  { when: '04', title: 'Pasca-produksi', body: 'Editing, warna, tata suara, dan musik sampai film siap tayang.' },
+  { when: '05', title: 'Tayang', body: 'Nonton bareng di sekolah, lalu diunggah ke galeri karya.' },
 ]
 
 export const mission = {
-  title: ['Be part', 'of the mission'],
-  rows: [
-    { title: 'For Engineers', body: 'Join a fast-moving team solving real problems with real hardware.', href: '/careers' },
-    { title: 'For Shipping Partners', body: 'Join as an early adopter and lead the shift to zero-emission shipping.', href: '/early-access?segment=shipping' },
-    { title: 'For Investors', body: 'Back the company building the power plant for the next century at sea.', href: '/contact?topic=investors' },
-  ],
+  title: ['Satu sistem,', 'banyak catatan.'],
+  body: 'Data umum terbuka. Data sensitif, terkunci. Anggota masuk lewat sistem masing-masing dengan akun sendiri.',
+  rows: systems.map((s) => ({ title: s.title, body: s.body, href: s.href })),
 }
 
 export const footer = {
-  blurb: 'Compact fusion reactors for commercial shipping and defense.',
+  blurb: 'Wadah kru produksi film pelajar: satu arah, banyak cerita, dari naskah sampai tayang.',
   columns: [
     {
-      title: 'Company',
+      title: 'Jelajahi',
       links: [
-        { label: 'About', href: '/company' },
-        { label: 'Careers', href: '/careers' },
-        { label: 'News', href: '/news' },
-        { label: 'Contact', href: '/contact' },
+        { label: 'Berita & Update', href: `${brand.site}/berita.php` },
+        { label: 'Galeri Karya', href: `${brand.site}/galeri.php` },
+        { label: 'Database Kru', href: `${brand.site}/database.html` },
       ],
     },
     {
-      title: 'Product',
+      title: 'Sistem',
       links: [
-        { label: 'Technology', href: '/technology' },
-        { label: 'Applications', href: '/applications' },
-        { label: 'Early access', href: '/early-access' },
-        { label: 'Style guide', href: '/styleguide' },
+        { label: 'Absensi Digital', href: 'https://script.google.com/macros/s/AKfycbznuQWUI4w2a2dTJJ-atAVqU7TJ_yiWx2O3QZEmJThS1xqBcE9JKqSHDtC9k2yiqyAVwA/exec' },
+        { label: 'Portal Redaksi', href: `${brand.site}/admin.php` },
+        { label: 'Sistem Internal', href: '#sistem' },
       ],
     },
   ],
-  legal: '© 2026 Tidewell Fusion, Inc. A template site: all figures are illustrative.',
+  legal: '© 2026 SatuArah Entertainment. Dikelola oleh kru Redaksi.',
 }
 
 /* ---------- Technology ---------- */

@@ -31,13 +31,13 @@ export function Nav() {
       )}
     >
       <div className="mx-auto flex h-[72px] max-w-[1320px] items-center justify-between gap-6 px-5 sm:px-8">
-        <Link href="/" aria-label="Tidewell Fusion home" className="-m-2 inline-flex items-center rounded-[12px] p-2">
+        <Link href="/" aria-label="SatuArah home" className="-m-2 inline-flex items-center rounded-[12px] p-2">
           <Logo />
         </Link>
         <nav aria-label="Main" className="hidden lg:block">
           <ul className="flex items-center gap-1">
             {nav.map((n) => {
-              const current = isCurrent(n.href, path)
+              const current = n.href.startsWith('/') && isCurrent(n.href, path)
               return (
                 <li key={n.href}>
                   <Link
@@ -67,8 +67,8 @@ export function Nav() {
       <Sheet open={open} onClose={() => setOpen(false)} title="Menu">
         <nav aria-label="Mobile" className="mt-4 flex flex-1 flex-col">
           <ul className="flex flex-col gap-1">
-            {[{ label: 'Home', href: '/' }, ...nav].map((n) => {
-              const current = isCurrent(n.href, path)
+            {[{ label: 'Beranda', href: '#atas' }, ...nav].map((n) => {
+              const current = n.href.startsWith('/') && isCurrent(n.href, path)
               return (
                 <li key={n.href}>
                   <Link

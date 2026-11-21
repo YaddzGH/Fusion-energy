@@ -5,12 +5,12 @@ import { milestones } from '../content'
 import { cx } from '../lib/cx'
 
 /** The road to sea trials, with the current milestone lit. */
-export function Milestones({ title = 'The road to sea trials' }: { title?: string }) {
+export function Milestones({ title = 'Alur produksi' }: { title?: string }) {
   return (
-    <section aria-labelledby="milestones-title" className="py-20 sm:py-28">
+    <section id="alur" aria-labelledby="milestones-title" className="py-20 sm:py-28">
       <Container>
         <Reveal>
-          <SectionHeading id="milestones-title" title={title} size="md" />
+          <SectionHeading id="milestones-title" eyebrow="Cara kami bekerja" title={title} size="md" />
         </Reveal>
         <ol className="relative mt-14 grid gap-8 md:grid-cols-5 md:gap-5">
           <span className="absolute left-[7px] top-2 h-[calc(100%-16px)] w-px bg-white/12 md:left-0 md:top-[7px] md:h-px md:w-full" aria-hidden />
@@ -25,7 +25,7 @@ export function Milestones({ title = 'The road to sea trials' }: { title?: strin
               />
               <span className={cx('text-[14px] font-medium', m.current ? 'text-fire-3' : 'text-muted')}>
                 {m.when}
-                {m.current ? <span className="ml-2 text-soft">Now</span> : null}
+                {m.current ? <span className="ml-2 text-soft">Sekarang</span> : null}
               </span>
               <h3 className="text-[17px] font-medium">{m.title}</h3>
               <p className="text-pretty text-[15px] leading-[1.5] text-muted">{m.body}</p>

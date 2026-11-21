@@ -7,16 +7,19 @@ import { hero, photos } from '../content'
 
 const ease = [0.22, 1, 0.36, 1] as const
 
+const corner = 'pointer-events-none absolute size-5 border-white/45'
+
+/** "Satu arah, banyak cerita.": the promise on the left, a frame from set on the right. */
 export function Hero() {
   return (
-    <section aria-labelledby="hero-title" className="relative isolate overflow-hidden">
-      {/* Black sky lifting to deep sea blue at the horizon */}
+    <section id="atas" aria-labelledby="hero-title" className="relative isolate overflow-hidden">
+      {/* Black sky lifting to deep blue at the horizon */}
       <div className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,#000_0%,#000_45%,#071233_78%,#17306a_100%)]" aria-hidden />
       <div className="absolute inset-x-0 bottom-0 -z-10 h-px bg-gradient-to-r from-transparent via-sky/50 to-transparent" aria-hidden />
-      <Container size="xl" className="grid min-h-[min(100svh,920px)] items-center gap-10 pb-16 pt-28 lg:grid-cols-[1.05fr_1fr] lg:pb-10 lg:pt-24">
+      <Container size="xl" className="grid min-h-[min(100svh,920px)] items-center gap-12 pb-16 pt-28 lg:grid-cols-[1.05fr_0.95fr] lg:pb-12 lg:pt-24">
         <div className="flex flex-col items-start gap-7">
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease }}>
-            <Badge tone="plasma" pulse>
+            <Badge tone="fire" pulse>
               {hero.eyebrow}
             </Badge>
           </motion.div>
@@ -27,9 +30,9 @@ export function Hero() {
             transition={{ duration: 0.9, delay: 0.08, ease }}
             className="display text-balance text-[46px] sm:text-[64px] lg:text-[76px]"
           >
-            {hero.title.map((l) => (
-              <span key={l} className="block">
-                {l}
+            {hero.title.map((line, i) => (
+              <span key={line} className={i === 1 ? 'block text-fire-2' : 'block'}>
+                {line}
               </span>
             ))}
           </motion.h1>
@@ -37,7 +40,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.16, ease }}
-            className="max-w-[520px] text-pretty text-[18px] leading-[1.55] text-muted"
+            className="max-w-[530px] text-pretty text-[18px] leading-[1.55] text-muted"
           >
             {hero.body}
           </motion.p>
@@ -71,15 +74,58 @@ export function Hero() {
             ))}
           </motion.dl>
         </div>
-        <motion.div
-          initial={{ opacity: 0, scale: 0.96 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.2, delay: 0.1, ease }}
-          className="relative mx-auto w-full max-w-[600px]"
+
+        {/* One frame from set, with viewfinder marks laid over it. */}
+        <motion.figure
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.1, delay: 0.12, ease }}
+          className="relative mx-auto w-full max-w-[500px]"
         >
-          <div className="absolute inset-[8%] -z-10 rounded-full bg-plasma/25 blur-[90px]" aria-hidden />
-          <img src={photos.reactor} alt="Render of the Tidewell reactor module, plasma glowing blue inside the vessel" width={900} height={972} fetchPriority="high" className="mx-auto w-[78%] animate-float drop-shadow-[0_40px_60px_rgb(0_0_0/0.6)]" />
-        </motion.div>
+          <div className="absolute -inset-8 -z-10 rounded-[48px] bg-fire-1/25 blur-[90px]" aria-hidden />
+          <div className="depth relative overflow-hidden rounded-[28px] ring-1 ring-white/15">
+            <img
+              src={photos.set}
+              alt="Kru SatuArah di lokasi syuting, kamera dan lampu di balik layar"
+              width={880}
+              height={1184}
+              fetchPriority="high"
+              className="aspect-[4/5] w-full object-cover"
+            />
+            <div className="grain pointer-events-none absolute inset-0" aria-hidden />
+            <div
+              className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgb(0_0_0/0.55)_0%,transparent_26%,transparent_58%,rgb(0_0_0/0.88)_100%)]"
+              aria-hidden
+            />
+            {/* Viewfinder corners */}
+            <span className={`${corner} left-3 top-3 border-l border-t`} aria-hidden />
+            <span className={`${corner} right-3 top-3 border-r border-t`} aria-hidden />
+            <span className={`${corner} bottom-3 left-3 border-b border-l`} aria-hidden />
+            <span className={`${corner} bottom-3 right-3 border-b border-r`} aria-hidden />
+
+            <div className="absolute inset-x-0 top-0 flex items-center justify-between px-6 pt-5 text-[11px] font-medium tracking-[0.2em] text-white/80">
+              <span className="inline-flex items-center gap-2">
+                <span className="round size-2 rounded-full bg-fire-1" aria-hidden />
+                {hero.frame.top}
+              </span>
+              <span>{hero.frame.meta}</span>
+            </div>
+
+            <div className="round pointer-events-none absolute left-1/2 top-[44%] size-24 -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/25" aria-hidden />
+
+            <figcaption className="absolute inset-x-0 bottom-0 flex flex-col gap-1.5 p-6">
+              <span className="text-[11.5px] font-medium uppercase tracking-[0.24em] text-fire-3">{hero.frame.caption}</span>
+              <span className="text-[15px] leading-snug text-white/85">{hero.frame.note}</span>
+            </figcaption>
+          </div>
+
+          {/* Film perforation rail on the left edge */}
+          <div className="absolute -left-3 top-10 hidden h-[calc(100%-5rem)] w-3 flex-col justify-between sm:flex" aria-hidden>
+            {Array.from({ length: 10 }).map((_, i) => (
+              <span key={i} className="h-2 w-3 rounded-[2px] bg-white/15" />
+            ))}
+          </div>
+        </motion.figure>
       </Container>
     </section>
   )

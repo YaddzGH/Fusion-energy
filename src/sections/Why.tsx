@@ -1,17 +1,17 @@
 import { Card, CardText } from '../components/Card'
 import { Container } from '../components/Container'
+import { FilmStrip } from '../components/Film'
 import { FireStreaks } from '../components/FireStreaks'
 import { Pedigree } from '../components/Pedigree'
 import { Reveal } from '../components/Reveal'
-import { ThermalImage } from '../components/ThermalImage'
 import { SectionHeading } from '../components/Typography'
 import { photos, why } from '../content'
 
-/** "Why Maritime Fusion?": three proof cards over a band of fire streaks. */
+/** "Kenapa SatuArah?": three proof cards over a band of projector streaks. */
 export function Why() {
-  const [team, prototype, volume] = why.cards
+  const [team, workflow, volume] = why.cards
   return (
-    <section aria-labelledby="why-title" className="relative isolate overflow-hidden py-24 sm:py-32">
+    <section id="tentang" aria-labelledby="why-title" className="relative isolate overflow-hidden py-24 sm:py-32">
       <Container>
         <Reveal>
           <SectionHeading id="why-title" title={why.title} />
@@ -26,22 +26,33 @@ export function Why() {
             <Reveal as="li">
               <Card tone="fire" as="article" className="flex h-[560px] flex-col sm:h-[600px]">
                 <div className="absolute inset-0 -z-10">
-                  <ThermalImage src={photos.crew} alt="" className="absolute inset-0" />
-                  <div className="absolute inset-x-0 top-0 h-[55%] bg-gradient-to-b from-[#4a1503] from-10% via-[#7a2606]/60 to-transparent" />
+                  <img
+                    src={photos.crew}
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                    className="absolute inset-0 h-full w-full object-cover object-[50%_60%]"
+                  />
+                  <div
+                    className="absolute inset-0 bg-[radial-gradient(120%_85%_at_72%_88%,rgb(255_90_10/0.42)_0%,transparent_62%)]"
+                    aria-hidden
+                  />
+                  <div className="grain absolute inset-0" aria-hidden />
+                  <div className="absolute inset-x-0 top-0 h-[58%] bg-gradient-to-b from-[#3a0f02]/95 via-[#5d1a04]/65 to-transparent" aria-hidden />
                 </div>
                 <CardText title={team.title} body={team.body} />
                 <div className="mt-auto p-1.5">
-                  <Pedigree marks={why.pedigree} />
+                  <Pedigree marks={why.pedigree} label="Genre yang kami kerjakan" />
                 </div>
               </Card>
             </Reveal>
             <Reveal as="li" delay={0.08}>
               <Card tone="ocean" as="article" className="flex h-[560px] flex-col sm:h-[600px]">
                 <div className="absolute inset-x-0 top-0 -z-10 h-1/2 bg-gradient-to-b from-[#0e1c3d] to-transparent" aria-hidden />
-                <CardText title={prototype.title} body={prototype.body} />
-                <div className="relative mx-auto mt-auto w-[92%] translate-y-[4%]">
-                  <div className="absolute inset-[12%] -z-10 rounded-full bg-plasma/45 blur-[60px]" aria-hidden />
-                  <img src={photos.reactor} alt="" loading="lazy" decoding="async" width={900} height={972} className="w-full" />
+                <CardText title={workflow.title} body={workflow.body} />
+                <div className="relative mx-auto mt-auto w-[104%] translate-y-[6%]">
+                  <div className="absolute inset-[18%] -z-10 rounded-full bg-fire-1/45 blur-[60px]" aria-hidden />
+                  <FilmStrip className="w-full" />
                 </div>
               </Card>
             </Reveal>
@@ -49,10 +60,10 @@ export function Why() {
               <Card tone="stripes" as="article" className="flex h-[560px] flex-col sm:h-[600px]">
                 <div className="absolute inset-x-0 top-0 -z-10 h-[45%] bg-gradient-to-b from-[#132651] via-[#1d3263]/70 to-transparent" aria-hidden />
                 <CardText title={volume.title} body={volume.body} />
-                <p className="mt-auto px-6 pb-8 text-center text-[88px] font-medium leading-none tracking-[-0.05em] sm:text-[104px]">
-                  {volume.stat}
-                  <span className="ml-1 text-[0.62em]">{volume.unit}</span>
-                </p>
+                <div className="mt-auto flex flex-col items-center gap-1 px-6 pb-8">
+                  <span className="text-[96px] font-medium leading-none tracking-[-0.05em] sm:text-[112px]">{volume.stat}</span>
+                  <span className="text-[18px] font-medium uppercase tracking-[0.18em] text-white/80">{volume.unit}</span>
+                </div>
               </Card>
             </Reveal>
           </ul>

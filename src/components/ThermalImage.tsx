@@ -23,7 +23,16 @@ export function ThermalImage({ src, alt, className }: { src: string; alt: string
           </feComponentTransfer>
         </filter>
       </svg>
-      <img src={src} alt={alt} loading="lazy" decoding="async" className="h-full w-full scale-110 object-cover" style={{ filter: `url(#thermal-${id})` }} />
+      <img
+        src={src}
+        alt={alt}
+        loading="lazy"
+        decoding="async"
+        className="h-full w-full scale-110 object-cover"
+        // Dim and add contrast first: the thermal map reads luminance, so a
+        // bright smoke-lit photo would otherwise blow out to white.
+        style={{ filter: `brightness(0.5) contrast(1.25) url(#thermal-${id})` }}
+      />
     </div>
   )
 }
