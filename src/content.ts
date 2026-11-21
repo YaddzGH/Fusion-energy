@@ -495,6 +495,6 @@ export const contact = {
 }
 
 export const notFound = {
-  title: 'Lost at sea',
-  body: 'This page drifted off our charts. Head back to port or try one of these.',
+  title: 'Menghilang di Lautan~',
+  body: 'Tautan yang kamu buka tidak tersedia. Kembali ke beranda atau pilih menu lain.',
 }
